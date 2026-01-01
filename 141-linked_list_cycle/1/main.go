@@ -150,10 +150,8 @@ func travess(curr *ListNode, prevSeen map[string]int) bool {
 		nextAddr := fmt.Sprintf("%s", curr.Next)
 
 		if prevSeen[currAddr] != 0 {
-			fmt.Printf("current val: %d - count: %d \n", curr.Val, prevSeen[currAddr])
 			// fora da lista -> nao ciclica
 			if prevSeen[nextAddr] == 0 {
-				fmt.Printf("Next.Val: %d - count: %d\n", curr.Next.Val, prevSeen[nextAddr])
 				return false
 			}
 		}
@@ -166,8 +164,6 @@ func travess(curr *ListNode, prevSeen map[string]int) bool {
 				return true
 			}
 		}
-
-		fmt.Printf("travess: curr %d - count: %d - prevSeen: %v\n", curr.Val, count, prevSeen)
 
 	}
 
