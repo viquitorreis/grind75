@@ -29,6 +29,15 @@ type ListNode struct {
 	Next *ListNode
 }
 
+// Complexity Analysis:
+// BIG O: O(n)
+//		Loop 1: O(n)
+//		Loop 2: O(n/2) - constant multiplier
+//		Loop 3: O(n/2) - constant multiplier
+//		So asymptotically O(n)
+// Space Complexity: O(1)
+//		Im storing every node in the hashmap
+
 func middleNode(node *ListNode) *ListNode {
 	seen := make(map[int]*ListNode, 0)
 	len := 1
