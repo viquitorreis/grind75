@@ -10,7 +10,7 @@ func main() {
 // Complexity Analisys
 // BIG O - O(n) - linear time
 // 		loop on array only once, and most other operations (variables, conditionals, etc) are O(1) - constant
-// Time Complexity O(n) - linear
+// Space Complexity O(n) - linear
 //		Worst case scenario: all elements on array are different, so my hashmap will have one different key for each, so n entries on map
 //		Of course, asymptotically
 

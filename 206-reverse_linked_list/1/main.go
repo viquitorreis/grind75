@@ -29,7 +29,7 @@ func reverseList(head *ListNode) *ListNode {
 // 		c. where im going next
 
 // BIG O
-// 		Time Complexity: O(n) - linear complexity
+// 		Space Complexity: O(n) - linear complexity
 // 			we visit each node on the linked list exactly once, and only constant time operations on each node (saving the next pointer, variable...)
 //	 	Space Complexity: O(n) - linear complexity
 //			the recursive calls the stack, since im doing one recursive call per node before any of them return, i build up n stack frames on the call stack
