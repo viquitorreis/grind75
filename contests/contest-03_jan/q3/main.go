@@ -1,10 +1,5 @@
 package main
 
-import (
-	"log"
-	"math"
-)
-
 func main() {
 	res := [][]int{
 		{
@@ -19,30 +14,68 @@ func main() {
 }
 
 func findMaxVal(n int, restrictions [][]int, diff []int) int {
-	// seq := make([]int, n)
-	seq := []int{}
-	maxVal := 0
+	// Passo 1: Setup restrictions
+	restrictionMap := make(map[int]int)
+	for _, r := range restrictions {
+		restrictionMap[r[0]] = r[1]
+	}
+
+	// arrays para armazenar max alcançável em cada direction
+	forwardMax := make([]int, n)
+	backwardMax := make([]int, n)
+
+	// inicializar
+	forwardMax[0] = 0 // a[0] = 0
+
+	// para backward, inicialmente todos podem ser infinito
 	for i := range n {
-		log.Println("oi: ", maxVal, seq)
-		seq = append(seq, diff[i])
-		if diff[i] > maxVal {
-			maxVal = diff[i]
-		}
+		backwardMax[i] = 1000000 // valor bem grande
+	}
 
-		if i == 0 {
-			seq[i] = 0
-			continue
+	for i := 1; i < n; i++ {
+		// maximo que podemos ter aqui vindo da position anterior
+		forwardMax[i] = forwardMax[i-1] + diff[i-1]
 
-		}
-
-		if 0 <= i && i <= n-2 && (int(math.Abs(float64(seq[i]-seq[i+1]))) <= diff[i]) {
-			if restrictions[i][0] == i && restrictions[i][1] == maxVal {
-				if seq[i] >= maxVal {
-					seq[i] = maxVal
-				}
+		// aplicar restriction se existir
+		if maxAllowed, exists := restrictionMap[i]; exists {
+			if forwardMax[i] > maxAllowed {
+				forwardMax[i] = maxAllowed
 			}
 		}
 	}
 
-	return maxVal
+	// BACKWARD PASS: propagar restrictions de volta
+	for i := n - 1; i >= 0; i-- {
+		// aplicar restriction local se existir
+		if maxAllowed, exists := restrictionMap[i]; exists {
+			if backwardMax[i] > maxAllowed {
+				backwardMax[i] = maxAllowed
+			}
+		}
+
+		// propagar para position anterior
+		if i > 0 {
+			// se em position i o máximo é X, em i-1 o máximo é X + diff[i-1]
+			maxFromNext := backwardMax[i] + diff[i-1]
+			if maxFromNext < backwardMax[i-1] {
+				backwardMax[i-1] = maxFromNext
+			}
+		}
+	}
+
+	// combinar e encontrar o máximo global
+	globalMax := 0
+	for i := range n {
+		// o valor real alcançável é o mínimo entre forward e backward
+		actualMax := forwardMax[i]
+		if backwardMax[i] < actualMax {
+			actualMax = backwardMax[i]
+		}
+
+		if actualMax > globalMax {
+			globalMax = actualMax
+		}
+	}
+
+	return globalMax
 }

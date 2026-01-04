@@ -11,7 +11,7 @@ func main() {
 }
 
 // Problema: quer o tamanho mínimo de elementos que conseguem
-// se somados um resultado maior que a soma de todos elementos do array
+// ser somados em um resultado maior que a soma de todos elementos do array
 
 // Ex:
 // nums = [6,5], k = 9
@@ -21,12 +21,11 @@ func main() {
 
 // Pattern: Sliding Window
 //		Why?
-//		sliding -> which unique numbers exist in this array? Add its value it on total sum
-//			For each pass, we check if we have found the total length
+//		sliding -> which unique numbers exist in this array? Add its value on total sum
+//			For each pass, we check if we found the total length
 
 func minLength(nums []int, k int) int {
-	// num -> exists
-	// unique := make(map[int]bool)
+	// num -> frequency count
 	windowFreq := make(map[int]int)
 	distinctSum := 0
 	minWinLen := len(nums) + 1 // começamos em um valor impossível
@@ -56,7 +55,6 @@ func minLength(nums []int, k int) int {
 			}
 			left++
 		}
-
 	}
 
 	if minWinLen == len(nums)+1 {
