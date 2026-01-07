@@ -48,6 +48,15 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+// COMPLEXITY ANALYSIS
+// BIG O:
+//		O(n) - onde n é o número de nós. Visitamos um nó só uma vez
+
+// Space Complexity
+//		O(n) - no pior caso
+//			onde a fila pode conter até n/2 - ultima camada de uma árvore completa
+//			o array de resultado também armazena todos os n valores
+
 // retornar a ordem de travessia por nível - cada camada
 func levelOrder(root *TreeNode) [][]int {
 	if root == nil {
