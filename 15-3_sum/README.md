@@ -8,7 +8,13 @@ We can handle some edge cases in our first if statement. There, we will check if
 
 We then get the low, high, and sum. The low will be the second leftmost pointer, located at the index immediately after i. The high variable will be the far right pointer, located at the last entry in the slice. We will then subtract the element at nums[i] from 0 to get the sum. We will need the other 2 pointers, low and high, to add up to this sum.
 
-Next, we will begin a while loop where we look for combinations of elements that add up to the desired sum. We will set the condition for the loop to run while low is less than high. If the values at nums[low] and nums[high] add up to the desired sum, we add them and nums[i] to our result slice for we have found one of the solutions.
+Next, we will begin a while loop where we look for combinations of elements that add up to the desired sum. We will set the condition for the loop to run while low is less than high. If the values at nums[low] and nums[high] add up to the desired sum, we add them and nums[i] to our result slice for we have found one of the solutions. Thats the **key** of this, the 3sum, is:
+
+```
+nums[i] + nums[j] + nums[k] == 0
+```
+
+So, if sum = - nums[i], then to be a 3 sum we only need that sum + (nums[j] + nums[k]) == 0
 
 We then enter 2 more loops. These loops are used to bypass duplicates. The first one continues while low < high and also while the element at the current pointer position equals the element at the next pointer position. We move the left pointer forwards until a unique element is found.
 

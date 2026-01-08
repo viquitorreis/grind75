@@ -18,7 +18,8 @@ func main() {
 //		fazemos um slice 2D para armazenar os resultados
 //		sort do array de input
 //		loop até i == size - 2 -> i vai ser o ponteiro mais a esquierda
-//
+//			- 2 pois vamos usar 2 ponteiros logo após o i, left e right, para não exceder o tamanho do array
+
 // 		for:
 //			checar se i =0, se i > 0 e se os números não são iguais (nums[i] != nums[i-1])
 //
@@ -61,7 +62,7 @@ func threeSum(nums []int) [][]int {
 		if i == 0 || nums[i] != nums[i-1] {
 			low := i + 1
 			high := len(nums) - 1
-			sum := 0 - nums[i]
+			sum := 0 - nums[i] // sum
 
 			for low < high {
 				if nums[low]+nums[high] == sum {
