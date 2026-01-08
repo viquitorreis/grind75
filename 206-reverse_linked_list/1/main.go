@@ -47,13 +47,11 @@ func reverseRec(curr, prev *ListNode) *ListNode {
 	// 2. apontamos a lista antiga para o novo valor
 	// é aqui que revertemos a arrow (reverse list)
 	// pois apontamos o proximo da lista atual para o anterior
+	// (revertemos o ponteiro)
 	curr.Next = prev
 
-	// 3. atualizamos o curr
-	curr.Next = prev
-
-	// 4. current vira o novo prev
-	// next vira o novo prev
+	// 4. avançá
+	// next vira curr, curr vira prev
 	return reverseRec(next, curr)
 }
 
