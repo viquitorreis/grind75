@@ -100,7 +100,7 @@ O processamento envolve:
 
 1. Remover o node da fila
 2. Inserir o valor num array temporário que armazena os nodes do nível atual
-3. Inserir os filhos na filha para processamento posterior
+3. Inserir os filhos na fila para processamento posterior
 
 ```go
 for i := 0; i < sz; i++ {
@@ -126,6 +126,16 @@ for i := 0; i < sz; i++ {
 Depois que todos os nodes que pertenciam ao mesmo nível forem processados, o output do nível atual é inserido no resultado final.
 
 ```go
+    for {
+      ...
+      
+      for {
+        ...
+      }
+
+      // level é preenchido com o nível atual de nodes. depois disso insere no resultado final
+      result = append(result, level)
+    }
 
 ```
 
