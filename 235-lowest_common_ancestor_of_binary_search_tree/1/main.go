@@ -25,7 +25,7 @@ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 			// 2. p e q < que current node
 		} else if p.Val < lca.Val && q.Val < lca.Val {
 			lca = lca.Left
-			// 3. Caso o split da árvore aconteça, ou um dos valores é o lca, nesse caso encontramos o valor desejado
+			// 3. Caso o split da árvore aconteça ou um dos valores é o lca, nesse caso encontramos o valor desejado
 		} else {
 			return lca
 		}

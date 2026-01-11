@@ -1,45 +1,35 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	fmt.Println("bad version: ", firstBadVersion(8))
+	fmt.Println(firstBadVersion(7))
 }
 
-func isBadVersion(v int) bool {
+func isBadVersion(version int) bool {
 	versions := map[int]bool{
 		1: false,
 		2: false,
 		3: false,
 		4: false,
-		5: false,
+		5: true,
 		6: true,
 		7: true,
-		8: true,
 	}
 
-	val, ok := versions[v]
-	fmt.Println("val is: ", val)
-	if ok {
+	if val, ok := versions[version]; ok {
 		return val
 	}
 
-	return false
+	panic("out of bounds version")
 }
 
 func firstBadVersion(n int) int {
-	if n == 1 {
-		return n
-	}
-
 	left, right := 1, n
 
 	for left < right {
 		mid := (left + right) >> 1
 
-		// se a versão for bad version, significa que PODE ter alguma antes que também era
 		if isBadVersion(mid) {
 			right = mid
 		} else {
