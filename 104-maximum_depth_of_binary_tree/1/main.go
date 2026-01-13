@@ -30,22 +30,9 @@ func maxDepth(root *TreeNode) (depth int) {
 			return 0
 		}
 
-		// if root.Left != nil {
-		// 	return dfs(root.Left) + 1
-		// } else {
-		// 	return dfs(root.Right) + 1
-		// }
-
 		left := dfs(root.Left) + 1
 		right := dfs(root.Right) + 1
 
-		// fmt.Printf("l: %d - r: %d\n", left, right)
-
-		// // return max(left, right)
-
-		// depth = max(left, right)
-
-		// return 1 + max(left, right)
 		return max(left, right)
 	}
 
