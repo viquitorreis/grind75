@@ -12,7 +12,7 @@ Tendo a seguinte árvore:
 
 O caminho mais longo seria:
 
-```
+```bash
 4 -> 2 -> 1 -> 3
 ```
 
@@ -32,7 +32,7 @@ Se temos 4 nós no caminhos, a quantidade de arestas = 4 - 1 = 3
 
 Existem casos, onde esse caminho não vai passar pela raíz da árvore:
 
-```
+```bash
         1
        / 
       2   
@@ -46,7 +46,7 @@ Existem casos, onde esse caminho não vai passar pela raíz da árvore:
 
 Nesse caso, o caminho mais longo nem passa pela raíz, ficando:
 
-```
+```bash
 9 -> 7 -> 5 -> 2 -> 4
 ```
 
@@ -72,7 +72,7 @@ Essa soma **representa a aresta entre o nó atual e o seu pai**. Cada nível de 
 
 Portanto, entendendo em uma árvore pequena:
 
-```
+```bash
     1
    / \
   2   3
