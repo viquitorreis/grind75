@@ -80,6 +80,13 @@ res[newX][newY] = res[curr.x][curr.y] + 1 // distancia do vizinho
 
 ## Implementação
 
+É BFS normal:
+
+1. Começa com zeros na queue (distância 0)
+2. Processa zeros → descobre vizinhos com distância 1 → adiciona eles na queue
+3. Processa células distância 1 → descobre vizinhos com distância 2 → adiciona eles na queue
+4. Continua até processar tudo
+
 1. Iniciando a matriz resultado
 
 ```go
@@ -105,6 +112,45 @@ func updateMatrix(mat [][]int) [][]int {
 ```
 
 2. Precisamos das direções possíveis para cada vizinho (cima,baixo,esquerda, direita). Enquanto a fila não estiver vazia, tiramos o primeiro elemento. Para cada vizinho ainda não visitado, calculamos a distancia dele = distancia do elemento atual + um. Adiciona esse vizinho na fila e marca como visitando trocando a distancia calculada na matriz resultado.
+
+Olha esse grid:
+
+```
+0  1  1
+```
+
+Se você NÃO adicionar o 1 da posição [0,1] na queue:
+
+Queue: [{0,0}]
+Processa {0,0}:
+
+Vizinho direita {0,1} tem distância 1
+res[0][1] = 1 ✓
+NÃO adiciona na queue
+
+Queue: [] (vazia)
+PROBLEMA: {0,2} nunca é processado! Fica MaxInt pra sempre! ❌
+
+Se você ADICIONAR na queue:
+Queue: [{0,0}]
+Processa {0,0}:
+
+Vizinho {0,1} tem distância 1
+res[0][1] = 1
+Adiciona {0,1} na queue
+
+Queue: [{0,1}]
+Processa {0,1}:
+
+Vizinho {0,2} tem distância 2
+res[0][2] = 2 ✓
+
+Queue: []
+FUNCIONOU! Todas as células calculadas! ✓
+
+Resumo:
+Você adiciona na queue para que essa célula processe os vizinhos DELA depois.
+Sem isso, você só processa vizinhos diretos dos zeros. Células mais longe ficam sem calcular.
 
 ```go
 for len(q) > 0 {
