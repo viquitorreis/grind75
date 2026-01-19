@@ -14,10 +14,9 @@ func combinationSum(candidates []int, target int) [][]int {
 	backtrack = func(remaining, start int) {
 		if remaining == 0 {
 			// copiamos para não perder a referencia
-			curr := [][]int{}
-			copy(curr, res)
-			curr = append(curr, current)
-			copy(res, curr)
+			combo := make([]int, len(current))
+			copy(combo, current)
+			res = append(res, combo)
 			return
 		}
 
@@ -27,7 +26,7 @@ func combinationSum(candidates []int, target int) [][]int {
 
 		for i := start; i < len(candidates); i++ {
 			current = append(current, candidates[i]) // escolhemos o current
-			backtrack(remaining-current[i], i)
+			backtrack(remaining-candidates[i], i)
 			current = current[:len(current)-1] // removemos o current
 		}
 	}
