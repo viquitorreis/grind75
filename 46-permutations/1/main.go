@@ -16,6 +16,7 @@ func permute(nums []int) [][]int {
 			combo := make([]int, len(current))
 			copy(combo, current)
 			res = append(res, combo)
+			return
 		}
 
 		// loop em todos os números
