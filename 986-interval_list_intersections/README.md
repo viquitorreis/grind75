@@ -18,4 +18,4 @@ Podemos usar **two pointers** para resolver esse problema. Um ponteiro para cada
     Start = min(ptrA[0], ptrB[0])
     End = max(ptrA[1], ptrB[1])
 3. Se start <= end, existe intersecção, colocamos nos intervalos de resultado
-4. Avançá o ponteiro do intervalo que termina primeiro
+4. Avança o ponteiro do intervalo que termina primeiro

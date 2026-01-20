@@ -27,3 +27,36 @@ maxEnd = 0
 
 Resultado: 1 intervalo sobrevive ([1,4])
 ```
+
+### Importante da ordenação decrescente no segundo
+
+Exemplo: [[1,3], [1,5]]
+
+Com ordenação crescente: processa [1,3] depois [1,5]
+
+Com ordenação correta (decrescente): processa [1,5] depois [1,3]
+
+Na segunda forma, quando chega em [1,3], você já processou [1,5] que cobre o elemento. Fica mais fácil detectar.
+
+## Lógica de atualização
+
+Depois de ordenar corretamente, se intervals[i][1] <= maxEnd, significa que existe um intervalo anterior que:
+
+- Começa antes ou igual (pela ordenação)
+- Termina depois ou igual (porque maxEnd é o maior fim visto)
+
+```go
+    count := 0 // intervalo não cobertos
+	maxEnd := intervals[0][1]
+
+	for i := 1; i < len(intervals); i++ {
+		if intervals[i][1] > maxEnd {
+			count++
+			maxEnd = intervals[i][1]
+		}
+		// se interval[1] <= maxEnd, está coberto, não precisa incrementar
+	}
+
+	return count
+}
+```
