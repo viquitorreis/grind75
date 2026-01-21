@@ -27,6 +27,7 @@ func (this *MinStack) Push(val int) {
 
 func (this *MinStack) Pop() {
 	this.stack = this.stack[:len(this.stack)-1]
+	this.minStack = this.minStack[:len(this.minStack)-1]
 }
 
 func (this *MinStack) Top() int {
