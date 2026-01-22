@@ -1,32 +1,44 @@
 package main
 
-func main() {
-}
+import "fmt"
 
-type TimeMap struct {
-	store map[string][]Pair // chave -> lista de (timestamp, value)
+func main() {
+	ts := Constructor()
+	ts.Set("foo", "bar", 1)
+	ts.Get("foo", 1)
+	ts.Get("foo", 3)
+	ts.Set("foo", "bar2", 4)
+	fmt.Println(ts.Get("foo", 4))
+	fmt.Println(ts.Get("foo", 5))
 }
 
 type Pair struct {
-	timestamp int
 	value     string
+	timestamp int
+}
+
+type TimeMap struct {
+	keyVal map[string][]Pair
 }
 
 func Constructor() TimeMap {
 	return TimeMap{
-		store: make(map[string][]Pair),
+		keyVal: make(map[string][]Pair),
 	}
 }
 
 func (this *TimeMap) Set(key string, value string, timestamp int) {
-	this.store[key] = append(this.store[key], Pair{
-		timestamp: timestamp,
-		value:     value,
-	})
+	if _, ok := this.keyVal[key]; ok {
+		this.keyVal[key] = append(this.keyVal[key], Pair{value: value, timestamp: timestamp})
+	} else {
+		this.keyVal[key] = []Pair{
+			{value: value, timestamp: timestamp},
+		}
+	}
 }
 
 func (this *TimeMap) Get(key string, timestamp int) string {
-	val, ok := this.store[key]
+	val, ok := this.keyVal[key]
 	if !ok || len(val) == 0 {
 		return ""
 	}
