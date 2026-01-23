@@ -23,6 +23,7 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 		left++
 		last++
 	}
+
 	for right < n {
 		newNums[last] = nums2[right]
 		right++
