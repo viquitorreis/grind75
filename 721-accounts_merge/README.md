@@ -8,6 +8,12 @@ Se vemos uma conta com emails A e B, sabemos que A e B são dessa pessoa. se dep
 
 Se pensarmos em conexões, O email A está conectado ao email B, pois aparecem juntos. O email B está conectado ao C. Então existe um caminho de A até C, passando por B.
 
+**Ou seja:** Tem no mínimo um e-mail em comum = é da mesma conta.
+    Para isso podemos fazer:
+
+    1. Grafo com lista adjacente
+    2. Cada chave é o nome
+
 Todos esses e-mails formam um grupo coenctado, um **componente conexo**.
 
 Isso é exatamente o que um grafo representa: entidades que têm conexões entre si.
@@ -139,7 +145,49 @@ for _, acc := range accounts {
 }
 ```
 
+### O que esse código faz:
 
+Primeiro, tem que entender que isso funciona como um **union find**, é um problema desse tipo, se não souber o que é ou não lembrar, deve estudar isso.
+
+Ele cria um **grafo não direcionado**, onde emails que aparecem na mesma conta se conectam.
+
+A estratégia: pega o primeiro e-mail da conta ```firstEmail``` e conecta **todos** os outros emails daquela conta a ele. Isso seria um "hub".
+
+```
+Conta: ["John", "john@mail.com", "john@gmail.com", "john@yahoo.com"]
+firstEmail = "john@mail.com"
+
+Conexões criadas:
+john@mail.com <-> john@gmail.com
+john@mail.com <-> john@yahoo.com
+```
+
+Essas duas últimas linhas, vão criar uma **conexão bidirecional**:
+
+```
+graph[firstEmail] = append(graph[firstEmail], email)  // firstEmail -> email
+graph[email] = append(graph[email], firstEmail)       // email -> firstEmail
+```
+
+- E porque precisamos mapear também, emailToName:
+
+Pois como é um problema **Union Find**, precisamos retornar o representante daquele grupo (no caso componente conexa). Se o email for a chave, conseguimos pegar o representante de todos emails na hora de retornar, para retornar assim:
+
+["John", "john1@mail.com", "john2@mail.com", "john3@mail.com"]
+
+- E a linha ```graph[email] = append(graph[email], firstEmail)```?
+
+Isso é para ser possível fazer DFS -> precisamos disso para navegar nos dois sentidos, pois de firstEmail conseguimos chegar em email, mas de email não vamos conseguir voltar para firstEmail
+
+Ex:
+
+```
+graph[john1] = [john2, john3]
+graph[john2] = [john1]
+graph[john3] = [john1]
+```
+
+assim conseguimos voltar para o primeiro email, a partir de qualquer elemento
 
 **Estado final:**
 ```
@@ -154,3 +202,27 @@ emailToName = {
     "b@mail.com": "John",
     "c@mail.com": "John"
 }
+```
+
+## DFS
+
+Entendendo o dfs...
+
+1. Se email já foi visitado não visita, simpels
+2. Caso contrário marca como visitado e faz o append na lista de visitados
+3. Para cada email conectado na componente conexa, visita de forma recursiva
+
+```go
+func dfs(email string, graph map[string][]string, visited map[string]bool, emails *[]string) {
+	if visited[email] {
+		return
+	}
+
+	visited[email] = true
+	*emails = append(*emails, email)
+
+	for _, neighbor := range graph[email] {
+		dfs(neighbor, graph, visited, emails)
+	}
+}
+```
