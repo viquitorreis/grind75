@@ -26,6 +26,9 @@ func (this *MinStack) Push(val int) {
 }
 
 func (this *MinStack) Pop() {
+	if len(this.stack) == 0 || len(this.minStack) == 0 {
+		return
+	}
 	this.stack = this.stack[:len(this.stack)-1]
 	this.minStack = this.minStack[:len(this.minStack)-1]
 }
@@ -35,10 +38,5 @@ func (this *MinStack) Top() int {
 }
 
 func (this *MinStack) GetMin() int {
-	if len(this.minStack) > 0 {
-		el := this.minStack[len(this.minStack)-1]
-		this.minStack = this.minStack[:len(this.minStack)-1]
-		return el
-	}
-	return -1
+	return this.minStack[len(this.minStack)-1]
 }
