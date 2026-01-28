@@ -41,3 +41,22 @@ func canPartition(nums []int) bool {
     return dp[target]
 }
 ```
+
+## Analogia
+
+Esse algoritmo é chato de aprender. Vamos usar uma analogia.
+
+Vamos supor que estamos construindo um motor. Temos várias peças, pistão, virabrequim, biela e válvula. Cada peça tem um peso específico, e queremos saber "consigo montar um conjunto de peças que pese exatamente 11 quilos?"
+
+Agora, pensa que temos uma prateleira com gavetas numeradas de 0 até 11. Cada gaveta representa um peso possível. Se uma gaveta está marcada com um "sim", significa que descobrimos uma combinação de peças que chega naquele peso exato.
+
+Começamos com todas gavetas vazias, mascadas com "NÃO", com excessão da 0, pois é só não pegar nenhuma peça nela... Por isso ```dp[0] = true```
+
+1. Dai pegamos a primeira peça, o pistão, que pesa 1 KG, quais gavetas podemos marcar SIM AGORA com ela?
+    a. Começamos na gaveta 11 e vamos descendo. Quando chega na 11, perguntamos "eu já tinha uma combinação de peso 10? Pois, se tinhamos de peso
+        10, é só somar com 1 e teremos a soma que precisamos... Então olhamos na gaveta 10, no caso, não vamos ter.
+        Continuamos descendo, até chegar na gaveta do peso atual, que é a 1. Como tinhamos combinação 0, para formar a 1, conseguimos. Então marcamos a 1 como SIM.
+
+2. Pegamos a próxima, virabrequim com 5KG. Fazemos o mesmo processo.
+    a. Quando chegamos na gaveta 6, perguntamos "eu tinha peso 1?" (6 - 5), e sim, tinhamos. Então pensamos, se eu tinha as peças que pesavam 1 quilo (o pistão), e agora pego esse virabrequim de 5KG, consigo fazer 6KG.
+        Então, quando chegamos aqui, conseguimos provas que conseguimos fazer a soma para essa gaveta, usando uma gaveta que a complemente, que já tenha o peso necessário para complementar ela.
