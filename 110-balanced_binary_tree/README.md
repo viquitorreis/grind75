@@ -8,9 +8,9 @@ dfs = func(root *TreeNode) (res int) {
         return 0
     }
     if root.Left != nil {
-        return dfs(root.Left) + 1   // ← Só explora a esquerda!
+        return dfs(root.Left) + 1   // <- Só explora a esquerda
     } else {
-        return dfs(root.Right) + 1  // ← Ou só explora a direita!
+        return dfs(root.Right) + 1  // <- Ou só explora a direita
     }
 }
 ```
