@@ -48,3 +48,22 @@ j=0: dp[0]=T? Sim. "leetcode" existe? Não
 j=4: dp[4]=T? Sim. "code" existe? Sim! → dp[8]=T
 
 Resultado final: dp[8]=T → Consegue formar "leetcode" = "leet" + "code"
+
+## Importante, cheecagem no loop
+
+```go
+for i := 1; i <= len(s); i++ {
+      for j := 0; j < i; j++ {
+            // precisamos testar todas as formas de criar uma palavra até i
+            // 1. dp[j] = conseguiu formar a string até j usando palavras válidas
+            // 2. t.SearchWord(s[j:i]) = a palavra de j até i existe no dicionário
+            if dp[j] && t.SearchWord(s[j:i]) {
+                  dp[i] = true
+                  break
+            }
+      }
+}
+```
+
+dp[j] = conseguiu formar a string até j usando palavras válidas
+t.SearchWord(s[j:i]) = a palavra de j até i existe no dicionário
