@@ -6,7 +6,7 @@ Sempre que acharmos palavras palindromas maiores, vamos atualizar a resposta.
 
 ## Checagem de palindromo
 
-A seguinte função, só funciona pois estamos buscamos o maior palindromo formado por *string contígua*:
+A seguinte função, só funciona pois estamos buscando o maior palíndromo formado por *string contígua*:
 
 ```go
 palindrome := func(s string, l, r int) string {
