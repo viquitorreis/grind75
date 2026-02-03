@@ -97,6 +97,8 @@ right = 1 (1 aresta)
 
 Portanto diametro = 3, que é o total de arestas.
 
+**O Diametro é sempre left + right num nó especifico**. Para obtermos isso globalmente, atualizamos a cada recursão o valor do diametro (caso seja maior).
+
 Outro ponto chave, é que começamos a contagem e empilhamento dos stack frames a partir dos nós filhos, não podemos contar a root, se não fica errado a soma (vai passar 1).
 
 Portanto:

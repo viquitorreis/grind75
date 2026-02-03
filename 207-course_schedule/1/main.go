@@ -10,8 +10,10 @@ func canFinish(numCourses int, prerequisites [][]int) bool {
 
 	for _, p := range prerequisites {
 		// ex [1,0]: Para fazer curso 1, precisa fazer curso 0 antes
-		startGraph[p[1]] = append(startGraph[p[1]], p[0]) // todas dependencias em p[1]
-		inDegree[p[0]]++                                  // o curso p[0] tem mais uma dependencia
+		// 1. mapeando todas todas dependencias usando p[1]. Primeiro elemento (p[0]) é o curso, segundo (p[1]) é a dependencia
+		// DEPENDENCIA APONTA PARA QUEM LIBERA.
+		startGraph[p[1]] = append(startGraph[p[1]], p[0])
+		inDegree[p[0]]++ // o curso p[0] tem mais uma dependencia
 	}
 
 	// acha os nodes com in-degree = 0 -> precisamos fazer eles primeiro pois não tem dependências
