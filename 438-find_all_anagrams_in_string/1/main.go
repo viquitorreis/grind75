@@ -24,7 +24,7 @@ func findAnagrams(s string, p string) []int {
 
 		// movemos a janela, pois ainda estamos devendo o caractere na janela atual
 		for count[ascii] > 0 {
-			count[s[left]-'a']--
+			count[s[left]-'a']-- // retornamos a divida do char na left
 			left++
 		}
 
