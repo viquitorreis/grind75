@@ -2,7 +2,7 @@ Certo, para resolvermos esse problema, primeiro precisamos entender o que é ele
 
 -> Precisamos retornar os elementos centrais, que formam a menor árvore a partir do grafo não direcionado.
 
-Os nós do centro, vão formar arvores mais baixas, pois estão mais pertos dos outros. Os nós folhas, estão mais longe, por isso formam árvores maiores.
+Os nós do centro, vão formar arvores mais baixas, pois estão mais perto dos outros. Os nós folhas, estão mais longe, por isso formam árvores maiores.
 
 ## Intuição:
 
