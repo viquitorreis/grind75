@@ -25,9 +25,9 @@ dfs = func(i int) {
 		if i >= len(nums) {
 ```
 
-### Por que duas camadas recursivas?
+### Por que duas chamadas recursivas?
 
-Nso problemas de subsets, isso é essencial.
+No problema de subsets, isso é essencial.
 
 Para cada número no array, temos exatamente duas escolhas: ou incluimos ele no subset atual, ou não incluimos. Essas duas chamadas recursivas exploram essas duas possibilidades.
 
@@ -100,7 +100,7 @@ func subsets(nums []int) [][]int {
 
 		// decisão para incluir o número em i
 		subset = append(subset, nums[i])
-		dfs(i + 1)
+		dfs(i)
 
 		fmt.Println("unstacking")
 
