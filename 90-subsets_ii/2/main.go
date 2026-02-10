@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
 	fmt.Println(subsetsWithDup([]int{1, 2, 2}))
@@ -11,6 +14,8 @@ func subsetsWithDup(nums []int) [][]int {
 	if len(nums) == 0 {
 		return res
 	}
+
+	sort.Ints(nums)
 
 	current := []int{}
 
@@ -23,7 +28,7 @@ func subsetsWithDup(nums []int) [][]int {
 		for i := start; i < len(nums); i++ {
 			// SÓ PULAMOS duplicatas se não for a primeira iteração do loop nessa chamada recursiva especifica
 			if i > start && nums[i] == nums[i-1] {
-				return
+				continue
 			}
 
 			// escolhe
