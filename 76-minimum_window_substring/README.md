@@ -23,7 +23,7 @@ Dois ponteiros:
             **Loop de encolhimento**
             
             Aqui entramos em um **loop interno** onde tentamos encolher a janela movendo left para a direita.
-            Nesse loop interno, primeiro checamos se a janela atual é menor que a janela que tinhamos guardado antes. Se for, atualizamos a menor janela com as posições atuais de left e right.
+                Nesse loop interno, primeiro checamos se a janela atual é menor que a janela que tinhamos guardado antes. Se for, atualizamos a menor janela com as posições atuais de left e right.
             Depois pegamos o caractere em s na posição left (primeiro caractere), remove ele da janela decrementando sua contagem no map / array window.
                 Se esse caractere existe em need e a contagem agora no window ficou menor que a contagem no need (necessária), decrementamos formed, pois deixou de satisfazer esse caractere específico. 
             No fim, incrementamos left, encolhendo a janela pela esquerda.
@@ -94,14 +94,6 @@ if count, exists := need[char]; exists && window[char] == count {
 // uma janela é válida quando formed == required
 for formed == required && left <= right {
     // calcula o tamanho da janela atual
-    currentLen := right - left + 1
-```
-
-```go
-// agora tentamos encolher a janela enquanto ela ainda for válida
-// uma janela é válida quando formed == required
-for formed == required && left <= right {
-    // Calcula o tamanho da janela atual
     currentLen := right - left + 1
 ```
 
