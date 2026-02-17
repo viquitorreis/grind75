@@ -64,6 +64,7 @@ func ladderLength(beginWord string, endWord string, wordList []string) int {
 		res++
 	}
 
+	// nao tem transformaçao valida para a palavra.
 	return 0
 }
 
