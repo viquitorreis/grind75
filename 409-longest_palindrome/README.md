@@ -2,7 +2,7 @@
 
 Precisamos descobrir o maior palindromo válido, rearranjando as letras disponíveis.
 
-Num primeiro momento, o problema parece complicado de se resolver, e até mesmo não muito viável em tempo hábil. Porém, se soubermos pontos chaves, podemos resolver muito fácilmente.
+Num primeiro momento, o problema parece complicado de se resolver, e até mesmo não muito viável em tempo hábil. Porém, se soubermos pontos chaves, podemos resolver muito facilmente.
 
 ## Counting
 
