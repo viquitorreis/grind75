@@ -28,7 +28,8 @@ type TreeNode struct {
 	Left, Right *TreeNode
 }
 
-type Codec struct{}
+type Codec struct {
+}
 
 func Constructor() Codec {
 	return Codec{}
@@ -40,64 +41,59 @@ func (this *Codec) serialize(root *TreeNode) string {
 		return ""
 	}
 
-	var s strings.Builder
+	var res strings.Builder
 	q := []*TreeNode{root}
 
 	for len(q) > 0 {
 		curr := q[0]
 		q = q[1:]
 
-		fmt.Println("curr: ", curr)
-
 		if curr == nil {
-			s.WriteString("N,")
+			// res.WriteString("N")
+			res.WriteString("N,")
 			continue
 		} else {
-			s.WriteString(strconv.Itoa(curr.Val))
-			s.WriteString(",")
+			num := strconv.Itoa(curr.Val)
+			res.WriteString(num)
 		}
+		res.WriteString(",")
 
 		q = append(q, curr.Left)
 		q = append(q, curr.Right)
 	}
 
-	return s.String()
+	return strings.TrimSuffix(res.String(), ",")
 }
 
 // Deserializes your encoded data to tree.
 func (this *Codec) deserialize(data string) *TreeNode {
-	if data == "" {
+	if strings.EqualFold(data, "") {
 		return nil
 	}
 
-	data = strings.TrimSuffix(data, ",")
-	nodesStr := strings.Split(data, ",")
+	words := strings.Split(data, ",")
 
-	if nodesStr[0] == "N" {
-		return nil
-	}
+	i := 0
+	rootNum, _ := strconv.Atoi(words[i])
+	q := []*TreeNode{{Val: rootNum}}
+	root := q[0]
+	i++
 
-	rootVal, _ := strconv.Atoi(nodesStr[0])
-	root := &TreeNode{Val: rootVal}
-
-	q := []*TreeNode{root}
-
-	i := 1
 	for len(q) > 0 && i < len(data) {
 		curr := q[0]
 		q = q[1:]
 
-		if i < len(data) && !strings.EqualFold(nodesStr[i], "N") {
-			leftVal, _ := strconv.Atoi(nodesStr[i])
-			leftNode := &TreeNode{Val: leftVal}
+		if i < len(data) && !strings.EqualFold(words[i], "N") {
+			num, _ := strconv.Atoi(words[i])
+			leftNode := &TreeNode{Val: num}
 			curr.Left = leftNode
 			q = append(q, leftNode)
 		}
 		i++
 
-		if i < len(data) && !strings.EqualFold(nodesStr[i], "N") {
-			rightVal, _ := strconv.Atoi(nodesStr[i])
-			rightNode := &TreeNode{Val: rightVal}
+		if i < len(data) && !strings.EqualFold(words[i], "N") {
+			num, _ := strconv.Atoi(words[i])
+			rightNode := &TreeNode{Val: num}
 			curr.Right = rightNode
 			q = append(q, rightNode)
 		}
