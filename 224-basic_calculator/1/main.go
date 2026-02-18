@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func main() {
 
 }
@@ -16,7 +14,6 @@ func calculate(s string) int {
 	for _, char := range s {
 		if char-'0' >= 0 && char-'0' <= 9 {
 			num = num*10 + int(char-'0')
-			fmt.Println("num now", num)
 		} else if char == '(' {
 			// empurramos o resultado atual e o singal atual para a stack
 			stack = append(stack, res, sign)
