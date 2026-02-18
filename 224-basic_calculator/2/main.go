@@ -28,7 +28,7 @@ func calculate(s string) int {
 
 			stack = stack[:len(stack)-2]
 
-			res += resSign + (res * stackSign)
+			res = resSign + (res * stackSign)
 
 			sign = 1
 			num = 0
